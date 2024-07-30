@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('index.html')
+    return render_template('./Flask/templates/index.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -19,10 +19,10 @@ def predict():
             prediction = predict_image(img)
             print(prediction)
             res = Markup(utils.disease_dic[prediction])
-            return render_template('display.html', status=200, result=res)
+            return render_template('./Flask/templates/display.html', status=200, result=res)
         except:
             pass
-    return render_template('index.html', status=500, res="Internal Server Error")
+    return render_template('./Flask/templates/index.html', status=500, res="Internal Server Error")
 
 
 if __name__ == "__main__":
